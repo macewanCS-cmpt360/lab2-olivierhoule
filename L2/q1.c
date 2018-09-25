@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
 	int x = 100;
 	int rc = fork();
 
@@ -18,5 +19,6 @@ int main(int argc, char *argv[]) {
 		x = 300;
 		printf("Parent x after change: %d\n", x);
 	}
+	printf("x value: %d\n", x);
 	return 0;
 }
