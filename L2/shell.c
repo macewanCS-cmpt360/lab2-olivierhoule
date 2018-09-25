@@ -5,7 +5,7 @@
 
 int main(void)
 {
-	while (true) {
+	while (1) {
 		char *cmdline;
 		char *token = NULL;
 		int i, rc;
