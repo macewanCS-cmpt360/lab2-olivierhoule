@@ -20,7 +20,7 @@ int main(void)
 
 		token = strtok(cmdline, "\n ");
 		while (token != NULL) {
-			//printf("%s\n", token);
+			printf("%s %d\n", token, i);
 			args[i++] = strdup(token);
 			token = strtok(NULL, "\n ");
 		}
