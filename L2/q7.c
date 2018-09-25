@@ -1,5 +1,6 @@
 /*
- * 
+ * When printf is called, nothing is output to the shell because stdout is
+ * closed.
  */
 
 #include <stdio.h>
