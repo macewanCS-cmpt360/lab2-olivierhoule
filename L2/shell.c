@@ -26,7 +26,7 @@ int main(void)
 		}
 		args[i] = NULL;
 
-		int rc = fork();
+		rc = fork();
 
 		if (rc < 0) { // fork failed; exit
 			fprintf(stderr, "fork failed\n");
