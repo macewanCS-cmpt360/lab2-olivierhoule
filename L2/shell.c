@@ -27,7 +27,7 @@ int main(void)
 		args[i] = NULL;
 		bg = 0;
 
-		if (strcmp(args[i-1], "&") != 0) {
+		if (strcmp(args[i-1], "&") == 0) {
 			args[i-1] = NULL;
 			bg = 1;
 		}
