@@ -1,5 +1,8 @@
 /*
- *
+ * This will print "hello" and then "goodbye", but it technically isn't
+ * guaranteed to be in this order. If the child takes more than 1 second to
+ * print hello, the parent will end up printing first. Using wait() is the
+ * ideal way to ensure the print order.
  */
 
 #include <stdio.h>
@@ -16,10 +19,10 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "fork failed\n");
 		exit(1);
 	} else if (rc == 0) { // child process
-		printf("hello");
+		printf("hello\n");
 	} else { // parent process
 		sleep(1);
-		printf("goodbye");
+		printf("goodbye\n");
 	}
 	return 0;
 }
