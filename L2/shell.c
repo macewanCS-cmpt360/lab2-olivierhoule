@@ -26,6 +26,17 @@ int main(void)
 		}
 		args[i] = NULL;
 
+		int rc = fork();
+
+		if (rc < 0) { // fork failed; exit
+			fprintf(stderr, "fork failed\n");
+			exit(1);
+		} else if (rc == 0) {
+			execvp(args[0], args);
+		} else {
+			wait(NULL);
+		}
+
 		free(cmdline);
 	}
 }
