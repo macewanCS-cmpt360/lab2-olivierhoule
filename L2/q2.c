@@ -1,5 +1,9 @@
 /*
- *
+ * Both processes can access the file descriptor returned by open() before the
+ * fork. When they both try to write to the file concurrently, it works without
+ * an error. The order in which the file is written to is likely not
+ * deterministic because the child might write before the parent, or vice
+ * versa.
  */
 
 #include <stdio.h>
