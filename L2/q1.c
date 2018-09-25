@@ -1,3 +1,12 @@
+/*
+ * The value of the variable in the child process is the same value as in the
+ * parent process: 100. When both processes change the value, they each have
+ * their own "version" of the variable, so when the child changes the value to
+ * 200, it remains at 200 for the rest of the process, and when the parent
+ * changes it to 300, it stays at 300 for the parent.
+ */
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
