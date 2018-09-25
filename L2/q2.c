@@ -10,7 +10,7 @@
 
 int main(int argc, char *argv[])
 {
-	int file = open("output.txt", O_CREAT|O_WRONLY|O_TRUNC, S_IRWXU);
+	int file = open("output.txt", O_CREAT|O_WRONLY|O_TRUNC, 0700);
 
 	if (file < 0) {
 		fprintf(stderr, "file open failed\n");
@@ -23,10 +23,14 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "fork failed\n");
 		exit(1);
 	} else if (rc == 0) { // child process
-		int cbytes = write(file, "This output is from the child\n", 30);
+		int cbytes = write(file,
+			"This output is from the child\n", 30);
+
 		printf("Child bytes written: %d\n", cbytes);
 	} else { // parent process
-		int pbytes = write(file, "This output is from the parent\n", 31);
+		int pbytes = write(file,
+			"This output is from the parent\n", 31);
+
 		printf("Parent bytes written: %d\n", pbytes);
 	}
 	return 0;
