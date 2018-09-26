@@ -18,11 +18,11 @@ int main(void)
 
 		printf("prompt> ");
 		fgets(cmdline, 1024, stdin);
-		fprintf(stderr, "[debug] cmdline = *%s*\n", cmdline);
+		//fprintf(stderr, "[debug] cmdline = *%s*\n", cmdline);
 
 		token = strtok(cmdline, "\n ");
 		while (token != NULL) {
-			printf("%s %d %d\n", token, i, bg);
+			//printf("%s\n", token);
 			args[i++] = strdup(token);
 			token = strtok(NULL, "\n ");
 		}
@@ -32,8 +32,6 @@ int main(void)
 			args[i-1] = NULL;
 			bg = 1;
 		}
-		printf("%d\n", bg);
-
 		free(cmdline);
 		rc = fork();
 
@@ -44,9 +42,7 @@ int main(void)
 			execvp(args[0], args);
 		} else { // parent
 			if (!bg) {
-				printf("waiting\n");
 				int rc_wait = waitpid(rc, &status, 0);
-				printf("%d %d %d\n", rc, rc_wait, &status);
 			}
 		}
 	}
