@@ -31,7 +31,8 @@ int main(void)
 			args[i-1] = NULL;
 			bg = 1;
 		}
-		
+		printf("%d", bg);
+
 		free(cmdline);
 		rc = fork();
 
@@ -42,6 +43,7 @@ int main(void)
 			execvp(args[0], args);
 		} else { // parent
 			if (!bg) {
+				printf("waiting");
 				wait(NULL);
 			}
 		}
