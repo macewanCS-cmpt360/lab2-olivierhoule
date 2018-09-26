@@ -17,7 +17,6 @@ int main(void)
 		bg = 0;
 
 		printf("prompt> ");
-		wait(NULL);
 		fgets(cmdline, 1024, stdin);
 		fprintf(stderr, "[debug] cmdline = *%s*\n", cmdline);
 
