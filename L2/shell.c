@@ -5,17 +5,19 @@
 
 int main(void)
 {
-	while (1) {
-		char *cmdline;
-		char *token = NULL;
-		int i, rc, bg;
-		char *args[10];
+	char *cmdline;
+	char *token = NULL;
+	int i, rc, bg;
+	char *args[10];
+	int *status;
 
+	while (1) {
 		cmdline = calloc(1, 1024);
 		i = 0;
 		bg = 0;
 
 		printf("prompt> ");
+		wait(NULL);
 		fgets(cmdline, 1024, stdin);
 		fprintf(stderr, "[debug] cmdline = *%s*\n", cmdline);
 
@@ -44,8 +46,8 @@ int main(void)
 		} else { // parent
 			if (!bg) {
 				printf("waiting\n");
-				int rc_wait = wait(NULL);
-				printf("%d %d", rc, rc_wait);
+				int rc_wait = waitpid(rc, &status, 0);
+				printf("%d %d %d\n", rc, rc_wait, &status);
 			}
 		}
 	}
