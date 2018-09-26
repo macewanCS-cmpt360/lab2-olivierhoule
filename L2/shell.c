@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0-or-later
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -22,6 +23,7 @@ int main(void)
 
 		token = strtok(cmdline, "\n ");
 
+		free(cmdline);
 		while (token != NULL) {
 			//printf("%s\n", token);
 			args[i++] = strdup(token);
@@ -29,11 +31,11 @@ int main(void)
 		}
 		args[i] = NULL;
 
+		// If last argument is &, don't wait and get rid of argument
 		if (strcmp(args[i-1], "&") == 0) {
 			args[i-1] = NULL;
 			bg = 1;
 		}
-		free(cmdline);
 		rc = fork();
 
 		if (rc < 0) { // fork failed; exit

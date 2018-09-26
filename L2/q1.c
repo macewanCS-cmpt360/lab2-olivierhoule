@@ -1,4 +1,5 @@
-/*
+/* SPDX-License-Identifier: GPL-2.0-or-later
+ *
  * The value of the variable in the child process is the same value as in the
  * parent process: 100. When both processes change the value, they each have
  * their own "version" of the variable, so when the child changes the value to

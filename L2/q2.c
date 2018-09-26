@@ -1,4 +1,5 @@
-/*
+/* SPDX-License-Identifier: GPL-2.0-or-later
+ *
  * Both processes can access the file descriptor returned by open() before the
  * fork. When they both try to write to the file concurrently, it works without
  * an error. The order in which the file is written to is likely not
