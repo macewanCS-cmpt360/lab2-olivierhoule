@@ -13,6 +13,7 @@ int main(void)
 
 		cmdline = calloc(1, 1024);
 		i = 0;
+		bg = 0;
 
 		printf("prompt> ");
 		fgets(cmdline, 1024, stdin);
@@ -20,12 +21,11 @@ int main(void)
 
 		token = strtok(cmdline, "\n ");
 		while (token != NULL) {
-			printf("%s %d\n", token, i);
+			printf("%s %d %d\n", token, i, bg);
 			args[i++] = strdup(token);
 			token = strtok(NULL, "\n ");
 		}
 		args[i] = NULL;
-		bg = 0;
 
 		if (strcmp(args[i-1], "&") == 0) {
 			args[i-1] = NULL;
@@ -33,6 +33,8 @@ int main(void)
 		}
 
 		rc = fork();
+
+		free(cmdline);
 
 		if (rc < 0) { // fork failed; exit
 			fprintf(stderr, "fork failed\n");
@@ -44,7 +46,6 @@ int main(void)
 				wait(NULL);
 			}
 		}
-
-		free(cmdline);
 	}
+	return 0;
 }
