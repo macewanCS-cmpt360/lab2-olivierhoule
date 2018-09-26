@@ -44,7 +44,7 @@ int main(void)
 		} else { // parent
 			if (!bg) {
 				printf("waiting\n");
-				wait(NULL);
+				waitpid(rc);
 			}
 		}
 	}
