@@ -17,7 +17,7 @@ int main(void)
 
 		printf("prompt> ");
 		fgets(cmdline, 1024, stdin);
-		//fprintf(stderr, "[debug] cmdline = *%s*\n", cmdline);
+		fprintf(stderr, "[debug] cmdline = *%s*\n", cmdline);
 
 		token = strtok(cmdline, "\n ");
 		while (token != NULL) {
@@ -31,10 +31,9 @@ int main(void)
 			args[i-1] = NULL;
 			bg = 1;
 		}
-
-		rc = fork();
-
+		
 		free(cmdline);
+		rc = fork();
 
 		if (rc < 0) { // fork failed; exit
 			fprintf(stderr, "fork failed\n");
