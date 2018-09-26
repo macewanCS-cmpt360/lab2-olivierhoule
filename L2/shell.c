@@ -43,7 +43,7 @@ int main(void)
 			execvp(args[0], args);
 		} else { // parent
 			if (!bg)
-				int rc_wait = waitpid(rc, &status, 0);
+				waitpid(rc, &status, 0);
 		}
 	}
 	return 0;
