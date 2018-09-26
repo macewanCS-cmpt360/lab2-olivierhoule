@@ -21,6 +21,7 @@ int main(void)
 		//fprintf(stderr, "[debug] cmdline = *%s*\n", cmdline);
 
 		token = strtok(cmdline, "\n ");
+
 		while (token != NULL) {
 			//printf("%s\n", token);
 			args[i++] = strdup(token);
@@ -41,9 +42,8 @@ int main(void)
 		} else if (rc == 0) { // child
 			execvp(args[0], args);
 		} else { // parent
-			if (!bg) {
+			if (!bg)
 				int rc_wait = waitpid(rc, &status, 0);
-			}
 		}
 	}
 	return 0;
